@@ -18,4 +18,9 @@ public class DogsController {
     public List<Dog> getDogs() {
         return repository.findAll();
     }
+
+    @GetMapping("random")
+    public Dog getRandomDog() {
+        return repository.findRandom();
+    }
 }

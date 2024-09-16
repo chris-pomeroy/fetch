@@ -59,9 +59,8 @@ import ProfileFull from './ProfileFull.vue';
 </template>
 
 <script lang="ts">
-import names from '../data/names.json';
-
-const DOGS_API = 'https://dog.ceo/api/breeds/image/random';
+const DOGS_API = 'api/random';
+const IMAGES_ROOT = 'https://images.dog.ceo/breeds/'
 
 export default {
   data() {
@@ -98,9 +97,9 @@ export default {
     async getNewProfile() {
       const response = await fetch(DOGS_API);
       const data = await response.json();
-      this.profilePicture = data.message;
-      this.profileName = names[Math.floor(Math.random() * names.length)];
-      this.profileAge = Math.ceil(Math.random() * 10);
+      this.profilePicture = IMAGES_ROOT + data.url;
+      this.profileName = data.name;
+      this.profileAge = data.age;
     },
     likeProfile() {
       this.likes.unshift({
